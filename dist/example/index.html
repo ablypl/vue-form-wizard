@@ -15,6 +15,7 @@
                          icon="ti-user">
               My first tab content
             </tab-content>
+            <tab-content v-for="s in els" :title="s.title"></tab-content>
             <tab-content title="Additional Info"
                          icon="ti-settings">
               My second tab content
@@ -30,9 +31,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.6/vue.min.js"></script>
     <script src="./../vue-tab-wizard.js"></script>
     <script >
+
       Vue.use(VueTabWizard)
       new Vue({
         el: '#app',
+
+        data: {
+          els: [
+            {
+              title: "test 1",
+            },
+            {
+              title: "test 2"
+            }
+          ]
+        },
+
         methods: {
             onComplete: function(){
                 alert('Yay. Done!');

@@ -16,6 +16,7 @@
                    route="/second"
                    icon="ti-settings">
       </tab-content>
+      <tab-content v-for="t in steps" :title="t.title"></tab-content>
       <tab-content title="Last step"
                    route="/third"
                    icon="ti-check">
@@ -39,7 +40,16 @@
       return {
         loadingWizard: false,
         error: null,
-        count: 0
+        count: 0,
+        steps: [
+          {
+            title: "jest"
+          },
+          {
+            title: "coś tam"
+          },
+
+        ]
       }
     },
     methods: {

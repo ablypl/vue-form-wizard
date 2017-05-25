@@ -146,6 +146,7 @@
         tabs: []
       }
     },
+
     computed: {
       tabCount () {
         return this.tabs.length
@@ -330,6 +331,9 @@
     },
     mounted () {
       this.tabs = this.$children.filter((comp) => comp.$options.name === 'tab-content')
+      this.$nextTick(() => {
+        this.tabs = this.$children.filter((comp) => comp.$options.name === 'tab-content')
+      })
       if (this.tabs.length > 0 && this.startIndex === 0) {
         let firstTab = this.tabs[this.activeTabIndex]
         firstTab.active = true
