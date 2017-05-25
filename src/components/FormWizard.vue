@@ -59,7 +59,7 @@
       <template>
          <span @click="finish" class="card-footer-right" v-if="isLastStep">
            <slot name="finish">
-             <button type="button" class="btn btn-fill btn-wd btn-next" :style="fillButtonStyle">
+             <button type="button" class="btn btn-fill btn-wd btn-next btn-finish" :style="fillButtonStyle">
               {{finishButtonText}}
             </button>
           </slot>
@@ -147,7 +147,16 @@
       }
     },
 
+    watch: {
+      children () {
+        console.log('zmiana')
+      }
+    },
+
     computed: {
+      children () {
+        return this.$children
+      },
       tabCount () {
         return this.tabs.length
       },
@@ -330,13 +339,7 @@
       }
     },
     mounted () {
-
       this.tabs = this.$children.filter((comp) => comp.$options.name === 'tab-content')
-      this.$nextTick(() => {
-        this.$nextTick(() => {
-          this.tabs = this.$children.filter((comp) => comp.$options.name === 'tab-content')        
-        })
-      })
       if (this.tabs.length > 0 && this.startIndex === 0) {
         let firstTab = this.tabs[this.activeTabIndex]
         firstTab.active = true
